@@ -1,0 +1,6 @@
+{
+  "name": "PlusOne.",
+  "description": "Find your people. Go somewhere. An activity-first social discovery platform for real-world plans.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

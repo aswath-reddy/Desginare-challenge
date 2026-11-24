@@ -1,0 +1,357 @@
+{
+  "entities": {
+    "UserPublicProfile": {
+      "title": "UserPublicProfile",
+      "description": "Publicly discoverable non-PII user profile for PlusOne members.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "photoURL": { "type": "string", "maxLength": 1000 },
+        "bio": { "type": "string", "maxLength": 500 },
+        "city": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "interests": { "type": "array" },
+        "socialVibe": { "type": "string", "maxLength": 120 },
+        "goals": { "type": "array" },
+        "onboardingCompleted": { "type": "boolean" },
+        "adultConfirmed": { "type": "boolean" },
+        "hostedCount": { "type": "number" },
+        "completedCount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName", "city", "onboardingCompleted", "adultConfirmed", "createdAt", "updatedAt"]
+    },
+    "PrivateUser": {
+      "title": "PrivateUser",
+      "description": "Owner-only PII and privacy/notification settings.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "email": { "type": "string", "format": "email", "maxLength": 254 },
+        "notificationPreferences": { "type": "object" },
+        "privacySettings": { "type": "object" },
+        "termsAcceptedAt": { "type": "string", "format": "date-time" },
+        "blockedUserIds": { "type": "array" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "notificationPreferences", "privacySettings", "termsAcceptedAt", "blockedUserIds", "updatedAt"]
+    },
+    "Activity": {
+      "title": "Activity",
+      "description": "Public real-world activity plan.",
+      "type": "object",
+      "properties": {
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "hostId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "hostName": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "hostPhotoURL": { "type": "string", "maxLength": 1000 },
+        "title": { "type": "string", "minLength": 3, "maxLength": 120 },
+        "description": { "type": "string", "minLength": 10, "maxLength": 2000 },
+        "category": {
+          "type": "string",
+          "enum": [
+            "Coffee & Conversations",
+            "Art & Culture",
+            "Food & Dining",
+            "Outdoor Adventures",
+            "Movies & Entertainment",
+            "Games & Hobbies",
+            "Fitness & Wellness",
+            "Networking",
+            "Explore the City",
+            "Something Spontaneous"
+          ]
+        },
+        "coverImageURL": { "type": "string", "maxLength": 1000 },
+        "venueName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "venueAddress": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "city": { "type": "string", "minLength": 2, "maxLength": 100 },
+        "startAt": { "type": "string", "format": "date-time" },
+        "endAt": { "type": "string", "format": "date-time" },
+        "timeZone": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "capacity": { "type": "number" },
+        "approvedParticipantCount": { "type": "number" },
+        "estimatedCost": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 8 },
+        "status": { "type": "string", "enum": ["published", "cancelled", "completed"] },
+        "isDemo": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "activityId", "hostId", "hostName", "title", "description", "category",
+        "coverImageURL", "venueName", "venueAddress", "city", "startAt", "endAt",
+        "timeZone", "capacity", "approvedParticipantCount", "estimatedCost",
+        "currency", "status", "isDemo", "createdAt", "updatedAt"
+      ]
+    },
+    "ActivityPrivateDetails": {
+      "title": "ActivityPrivateDetails",
+      "description": "Meeting instructions and preparation notes restricted to host and approved participants.",
+      "type": "object",
+      "properties": {
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "hostId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "meetingInstructions": { "type": "string", "minLength": 3, "maxLength": 1500 },
+        "whatToBring": { "type": "string", "maxLength": 600 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["activityId", "hostId", "meetingInstructions", "whatToBring", "updatedAt"]
+    },
+    "ActivityRoster": {
+      "title": "ActivityRoster",
+      "description": "Publicly visible non-PII approved participant preview list for an activity.",
+      "type": "object",
+      "properties": {
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "hostId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "previews": { "type": "array" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["activityId", "hostId", "previews", "updatedAt"]
+    },
+    "JoinRequest": {
+      "title": "JoinRequest",
+      "description": "Deterministic request by a user to join an activity.",
+      "type": "object",
+      "properties": {
+        "requestId": { "type": "string", "minLength": 3, "maxLength": 260, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "hostId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "requesterName": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "requesterPhotoURL": { "type": "string", "maxLength": 1000 },
+        "introductoryMessage": { "type": "string", "maxLength": 500 },
+        "status": { "type": "string", "enum": ["pending", "approved", "declined", "withdrawn"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["requestId", "activityId", "userId", "hostId", "requesterName", "introductoryMessage", "status", "createdAt", "updatedAt"]
+    },
+    "Participant": {
+      "title": "Participant",
+      "description": "Membership and attendance tracking for an approved activity member.",
+      "type": "object",
+      "properties": {
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "hostId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "photoURL": { "type": "string", "maxLength": 1000 },
+        "role": { "type": "string", "enum": ["host", "participant"] },
+        "membershipStatus": { "type": "string", "enum": ["approved", "left", "removed"] },
+        "attendanceStatus": { "type": "string", "enum": ["pending", "confirmed_by_host", "self_reported", "absent"] },
+        "joinedAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["activityId", "userId", "hostId", "displayName", "role", "membershipStatus", "attendanceStatus", "joinedAt", "updatedAt"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Activity-scoped group chat metadata.",
+      "type": "object",
+      "properties": {
+        "conversationId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "hostId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "coverImageURL": { "type": "string", "maxLength": 1000 },
+        "lastMessagePreview": { "type": "string", "maxLength": 200 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastMessageAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["conversationId", "activityId", "hostId", "title", "createdAt", "lastMessageAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Real-time message inside an activity group conversation.",
+      "type": "object",
+      "properties": {
+        "messageId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "senderId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "senderName": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "senderPhotoURL": { "type": "string", "maxLength": 1000 },
+        "messageText": { "type": "string", "minLength": 1, "maxLength": 1500 },
+        "messageType": { "type": "string", "enum": ["user", "system", "announcement"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["messageId", "senderId", "senderName", "messageText", "messageType", "createdAt"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "Persistent in-app notification scoped to a single recipient.",
+      "type": "object",
+      "properties": {
+        "notificationId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "recipientId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "senderId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "type": {
+          "type": "string",
+          "enum": [
+            "join_request",
+            "request_approved",
+            "request_declined",
+            "participant_withdrew",
+            "activity_updated",
+            "activity_cancelled",
+            "group_announcement",
+            "feedback_request"
+          ]
+        },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "message": { "type": "string", "minLength": 1, "maxLength": 400 },
+        "isRead": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["notificationId", "recipientId", "senderId", "activityId", "type", "title", "message", "isRead", "createdAt"]
+    },
+    "SavedActivity": {
+      "title": "SavedActivity",
+      "description": "User bookmark for an activity.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "activityId", "createdAt"]
+    },
+    "Feedback": {
+      "title": "Feedback",
+      "description": "Private post-activity feedback from an approved participant.",
+      "type": "object",
+      "properties": {
+        "feedbackId": { "type": "string", "minLength": 3, "maxLength": 260, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "attended": { "type": "boolean" },
+        "wouldAttendAlone": { "type": "string", "enum": ["yes", "no", "unsure"] },
+        "metSomeoneNew": { "type": "boolean" },
+        "comfortRating": { "type": "number" },
+        "wouldUseAgain": { "type": "boolean" },
+        "comments": { "type": "string", "maxLength": 1000 },
+        "isDemo": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["feedbackId", "activityId", "userId", "attended", "wouldAttendAlone", "metSomeoneNew", "comfortRating", "wouldUseAgain", "comments", "isDemo", "createdAt"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "Safety or content moderation report.",
+      "type": "object",
+      "properties": {
+        "reportId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "reporterId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "targetType": { "type": "string", "enum": ["user", "activity", "message"] },
+        "targetId": { "type": "string", "minLength": 1, "maxLength": 260 },
+        "activityId": { "type": "string", "maxLength": 128 },
+        "reason": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["open", "reviewed", "resolved", "dismissed"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reportId", "reporterId", "targetType", "targetId", "reason", "description", "status", "createdAt", "updatedAt"]
+    },
+    "AnalyticsEvent": {
+      "title": "AnalyticsEvent",
+      "description": "Pilot impact tracking event.",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "activityId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "eventType": {
+          "type": "string",
+          "enum": [
+            "activity_published",
+            "activity_discovered",
+            "join_requested",
+            "request_approved",
+            "attendance_confirmed",
+            "attendance_self_reported",
+            "activity_completed",
+            "feedback_submitted"
+          ]
+        },
+        "isDemo": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["eventId", "userId", "activityId", "eventType", "isDemo", "createdAt"]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Server-assigned administrator marker.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "grantedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "grantedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": { "$ref": "#/entities/UserPublicProfile" },
+      "description": "Public non-PII profiles."
+    },
+    "/privateUsers/{uid}": {
+      "schema": { "$ref": "#/entities/PrivateUser" },
+      "description": "Private PII and user preferences."
+    },
+    "/activities/{activityId}": {
+      "schema": { "$ref": "#/entities/Activity" },
+      "description": "Public activity plans."
+    },
+    "/activityPrivateDetails/{activityId}": {
+      "schema": { "$ref": "#/entities/ActivityPrivateDetails" },
+      "description": "Meeting instructions visible only to host and approved participants."
+    },
+    "/activityRosters/{activityId}": {
+      "schema": { "$ref": "#/entities/ActivityRoster" },
+      "description": "Non-PII participant avatar/first-name previews for activity pages."
+    },
+    "/joinRequests/{requestId}": {
+      "schema": { "$ref": "#/entities/JoinRequest" },
+      "description": "Join requests keyed deterministically by activityId_userId."
+    },
+    "/participants/{participantId}": {
+      "schema": { "$ref": "#/entities/Participant" },
+      "description": "Approved membership and attendance keyed deterministically by activityId_userId."
+    },
+    "/conversations/{conversationId}": {
+      "schema": { "$ref": "#/entities/Conversation" },
+      "description": "Activity group chats keyed by activityId."
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessage" },
+      "description": "Group chat messages."
+    },
+    "/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/Notification" },
+      "description": "Recipient-scoped in-app notifications."
+    },
+    "/savedActivities/{savedId}": {
+      "schema": { "$ref": "#/entities/SavedActivity" },
+      "description": "Saved bookmarks keyed by userId_activityId."
+    },
+    "/feedback/{feedbackId}": {
+      "schema": { "$ref": "#/entities/Feedback" },
+      "description": "Post-activity feedback keyed by activityId_userId."
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "#/entities/Report" },
+      "description": "Moderation reports readable only by admins and reporter."
+    },
+    "/analyticsEvents/{eventId}": {
+      "schema": { "$ref": "#/entities/AnalyticsEvent" },
+      "description": "Pilot impact events readable only by admins."
+    },
+    "/admins/{uid}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Read-only admin registry."
+    }
+  }
+}

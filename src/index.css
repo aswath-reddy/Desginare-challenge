@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "42dot Sans Variable", "42dot Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "42dot Sans Variable", "42dot Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "42dot Sans Variable", "42dot Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-jet: #080808;
+  --color-pearl: #F8F6F0;
+  --color-surface: #FFFFFF;
+  --color-sand: #F0EEE8;
+  --color-muted: #747474;
+  --color-hairline: #E5E3DD;
+}
+
+@layer base {
+  html, body {
+    font-family: var(--font-sans);
+    background-color: #F8F6F0;
+    color: #080808;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6, button, input, select, textarea, .font-display, .font-sans {
+    font-family: var(--font-display);
+  }
+
+  button, a, input, select, textarea {
+    outline-color: #080808;
+  }
+
+  button:not(:disabled), a {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  :focus-visible {
+    outline: 2px solid #080808;
+    outline-offset: 2px;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

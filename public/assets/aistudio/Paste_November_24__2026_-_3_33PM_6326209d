@@ -1,0 +1,1093 @@
+# MASTER BUILD PROMPT — PLUSONE
+
+Act as a senior full-stack software engineer, product designer, UX researcher, database architect, and quality assurance engineer.
+
+Build a complete, production-oriented, responsive social discovery web application called **PlusOne.**
+
+Do not create only a landing page, static prototype, design mockup, or disconnected frontend. Build a functional end-to-end application with real authentication, persistent database storage, backend logic, user interactions, security rules, and complete user journeys.
+
+## 1. Product concept
+
+Product name: PlusOne.
+
+Primary tagline: Find your people. Go somewhere.
+
+Secondary tagline: Good plans. Better company.
+
+Brand philosophy: Life is better with a PlusOne.
+
+PlusOne is an activity-first social discovery platform that helps people find others to participate in real-world activities.
+
+Many people want to visit museums, attend events, explore cities, go hiking, visit cafes, watch movies, or try new experiences but postpone their plans because they have nobody to accompany them.
+
+PlusOne solves this problem by allowing people to create activities, discover nearby plans, request to join small groups, communicate with approved participants, and meet in real life.
+
+The central product insight is:
+
+"Don't match people based on who they are. Match them based on what they want to do."
+
+This is not a dating application. Do not include romantic matching, profile swiping, attractiveness ratings, or dating terminology.
+
+The product should encourage meaningful offline interactions instead of endless online engagement.
+
+## 2. Technology stack
+
+Use the following technology stack, adapting only where required by the supported Google AI Studio runtime:
+
+- React with TypeScript
+- Tailwind CSS
+- Lucide icons
+- Framer Motion for subtle animations
+- React Router or equivalent routing
+- Firebase Authentication
+- Cloud Firestore database
+- Firebase Cloud Storage for profile and activity images
+- Firebase Cloud Functions or a secure server-side backend for privileged operations
+- Firebase Hosting or a compatible deployment environment
+
+Use reusable components, modular architecture, strong TypeScript types, and maintainable code.
+
+Use environment variables for configuration.
+
+Never expose service account credentials, private API keys, administrative tokens, or server secrets in frontend code.
+
+If Firebase cannot be provisioned automatically, generate the complete integration code, database security rules, environment configuration template, and exact setup instructions.
+
+Do not silently substitute mock authentication or localStorage for the real production database.
+
+## 3. Design system
+
+Create a premium, editorial, modern, monochrome visual identity.
+
+The interface should feel like a combination of Airbnb's visual storytelling, Apple's simplicity, and a modern lifestyle magazine.
+
+Color palette:
+
+- Jet Black: #080808
+- Pearl White: #F8F6F0
+- Pure White: #FFFFFF
+- Secondary background: #F0EEE8
+- Muted text: #747474
+- Border: #E5E3DD
+
+Use jet black and pearl white as the dominant brand colors.
+
+Use accessible semantic colors only for important error, warning, and success states.
+
+Use exactly two font families:
+
+- Space Grotesk for headings, display typography, branding, and large numbers.
+- Manrope for body content, labels, buttons, forms, and navigation.
+
+Visual requirements:
+
+- Large, bold editorial typography.
+- Strong visual hierarchy.
+- Generous whitespace.
+- Premium lifestyle photography.
+- Rounded cards with 16–24px corner radii.
+- Pill-shaped primary buttons.
+- Thin, subtle borders.
+- Minimal shadows.
+- Clean monochrome line icons.
+- Consistent spacing system.
+- Smooth hover transitions.
+- Subtle page transitions.
+- Skeleton loading states.
+- Elegant empty states.
+- Responsive layouts.
+- Accessible focus indicators.
+- Reduced-motion support.
+
+Avoid excessive gradients, neon colors, glassmorphism, generic dashboard aesthetics, excessive decorative elements, and unnecessary animations.
+
+The design must feel like a real consumer startup, not a generic AI-generated website.
+
+## 4. Branding and logo
+
+Create a minimal PlusOne wordmark.
+
+Display the brand name as "plusone." or "PlusOne." consistently.
+
+Create a simple brand icon representing two people coming together, connection, or a plus symbol.
+
+The logo must work in both black-on-white and white-on-black formats.
+
+Use the brand icon for the favicon and mobile navigation.
+
+## 5. Public landing page
+
+Create a visually striking landing page with the following sections.
+
+### Navigation
+
+- PlusOne logo
+- Discover
+- How it works
+- Safety
+- Log in
+- Get started
+
+### Hero section
+
+Headline:
+
+"Good plans.
+Better company."
+
+Supporting copy:
+
+"From spontaneous coffee runs to weekend adventures, find people who want to do the same things you do."
+
+Primary CTA: Find your next plan
+
+Secondary CTA: Create a plan
+
+Add an editorial photo collage featuring people exploring museums, visiting cafes, hiking, and attending social activities.
+
+### Problem section
+
+Headline: "How many plans have you cancelled because you had nobody to go with?"
+
+Supporting copy:
+
+"Somewhere nearby, someone wants to do exactly what you want to do. PlusOne brings you together."
+
+### How it works
+
+Step 01 — Find something you love.
+
+Discover activities happening around you.
+
+Step 02 — Find your people.
+
+Request to join a small group or create your own plan.
+
+Step 03 — Actually go.
+
+Meet in real life and make memories beyond the screen.
+
+### Featured activities
+
+Display genuine published activities from the database.
+
+If there are no activities, show a meaningful empty state or clearly labelled demo activities.
+
+### Categories
+
+- Coffee & Conversations
+- Art & Culture
+- Food & Dining
+- Outdoor Adventures
+- Movies & Entertainment
+- Games & Hobbies
+- Fitness & Wellness
+- Networking
+- Explore the City
+- Something Spontaneous
+
+### Safety section
+
+Headline: "New people. Comfortable beginnings."
+
+Explain public meeting locations, host approval, reporting, blocking, and community guidelines.
+
+Do not claim users are background-checked or identity-verified unless those features are actually implemented.
+
+### Final CTA
+
+Headline: "Your next favorite memory starts with a PlusOne."
+
+Button: Let's go
+
+### Footer
+
+Include About, Community Guidelines, Safety, Privacy Policy, Terms, and Contact.
+
+Do not display fabricated testimonials, user counts, ratings, or success metrics.
+
+## 6. Authentication
+
+Build complete authentication screens:
+
+- Welcome screen
+- Sign up
+- Log in
+- Google sign-in
+- Email and password authentication
+- Email verification
+- Forgot password
+- Reset password
+- Authentication error states
+- Logout
+- Session persistence
+
+Use Firebase Authentication.
+
+Implement protected routes and redirect authenticated users to onboarding or the discovery dashboard depending on their profile completion status.
+
+Include password visibility controls, validation, loading indicators, and clear error messages.
+
+Require users to confirm that they are at least 18 years old and accept the community guidelines.
+
+## 7. User onboarding
+
+Create an elegant five-step onboarding experience with a progress indicator.
+
+Question 1:
+
+"What should we call you?"
+
+Collect display name and optional profile photograph.
+
+Question 2:
+
+"Where are you exploring?"
+
+Allow users to select their city manually. Offer optional location permission, but never require it.
+
+Question 3:
+
+"What are you into?"
+
+Allow multiple interest selections using visual category cards.
+
+Question 4:
+
+"What's your social vibe?"
+
+Options:
+
+- Small, meaningful conversations
+- Energetic group experiences
+- Spontaneous adventures
+- Relaxed, low-pressure hangouts
+- Open to everything
+
+Question 5:
+
+"What brings you to PlusOne?"
+
+Options:
+
+- Make new friends
+- Explore new places
+- Find activity partners
+- Meet people in a new city
+- Build my network
+- Try something different
+
+Save onboarding responses in Firestore.
+
+Allow users to edit their preferences later.
+
+Completion screen:
+
+"You're one plan away from something new."
+
+CTA: Explore activities
+
+## 8. Authenticated application layout
+
+Desktop navigation:
+
+- Discover
+- Explore
+- My Plans
+- Messages
+- Saved
+- Notifications
+- Profile
+- Create a Plan
+
+Mobile bottom navigation:
+
+- Discover
+- My Plans
+- Create
+- Messages
+- Profile
+
+Create a responsive application shell with a desktop sidebar or top navigation and a mobile bottom navigation bar.
+
+## 9. Discover dashboard
+
+Build a personalized discovery homepage.
+
+Greeting:
+
+"Hey, [first name]. What's the plan?"
+
+Supporting copy:
+
+"Something good is happening around you."
+
+Include:
+
+- Current city selector
+- Search bar
+- Category filters
+- Date filters
+- Free and paid activity filters
+- Available spots filter
+- Saved activity button
+- Featured activities
+- Happening this weekend
+- Starting soon
+- Based on your interests
+- Recently added plans
+
+Use real database queries for all activity listings.
+
+Each activity card must contain:
+
+- Cover image
+- Activity title
+- Category
+- Date and time
+- Public venue
+- City
+- Host name and avatar
+- Participant count
+- Remaining spots
+- Free or estimated cost
+- Save button
+- View activity button
+
+Display appropriate status labels such as:
+
+- 2 spots left
+- Happening today
+- Group full
+- Request pending
+- Joined
+
+Never display fake availability or participant counts.
+
+## 10. Activity details page
+
+Create an immersive activity details screen.
+
+Include:
+
+- Large cover image
+- Activity title
+- Date and time
+- Venue and city
+- Host information
+- Activity description
+- What to expect
+- Estimated cost per person
+- Group capacity
+- Available spots
+- Approved participant previews
+- Meeting instructions
+- Safety reminder
+- Save and share controls
+- Request to join button
+- Report activity option
+
+Show detailed meeting instructions only to the host and approved participants.
+
+Add a mobile sticky bottom action bar.
+
+Example activity:
+
+"Museum day with new friends"
+
+Description:
+
+"We're exploring the museum and grabbing coffee afterward. New people are welcome!"
+
+CTA: Count me in
+
+## 11. Create an activity
+
+Build a functional multi-step activity creation flow.
+
+Step 1 — What are we doing?
+
+- Activity title
+- Category
+- Description
+- Cover image upload
+
+Step 2 — Where and when?
+
+- Public venue name
+- City
+- Venue address
+- Date
+- Start time
+- End time
+- Time zone
+
+Step 3 — Who's coming?
+
+- Maximum group size, including the host
+- Minimum age of 18
+- Estimated cost per person
+- Free or paid
+- What participants should bring
+
+Step 4 — Final details
+
+- Meeting instructions
+- Community guidelines acknowledgement
+- Activity preview
+
+Step 5 — Publish
+
+Save the activity to Firestore and make it discoverable by other users.
+
+Validate all required fields.
+
+Prevent activities from being published with past dates, invalid capacity, missing public venue details, or inconsistent start and end times.
+
+Allow hosts to edit or cancel their activities.
+
+Notify approved participants when important activity details change.
+
+Success screen:
+
+"Good things start with a plan."
+
+CTA: View my activity
+
+Secondary CTA: Share your plan
+
+## 12. Join request workflow
+
+Implement a real, database-backed request and approval system.
+
+When a user clicks "Request to join":
+
+- Open a confirmation modal.
+- Allow an optional introductory message.
+- Create a join request in Firestore.
+- Notify the activity host.
+- Change the button to "Request pending."
+- Prevent duplicate active requests.
+- Allow the user to withdraw a pending request.
+
+The host must be able to:
+
+- View incoming requests.
+- View relevant public profile information.
+- Approve a request.
+- Decline a request.
+- View approved participants.
+- Remove a participant when necessary.
+
+When approved:
+
+- Update the request status.
+- Update the activity's approved participant count.
+- Add the activity to the user's My Plans.
+- Notify the user.
+- Grant access to the activity group chat and meeting instructions.
+
+Use a secure server-side transaction for approval and capacity updates.
+
+Prevent race conditions and overbooking when multiple requests are approved simultaneously.
+
+The host cannot request to join their own activity.
+
+Users cannot join cancelled, completed, expired, or full activities.
+
+## 13. My Plans page
+
+Create tabs for:
+
+- Upcoming
+- Hosting
+- Pending
+- Completed
+- Cancelled
+
+Display real activities associated with the authenticated user.
+
+Allow users to:
+
+- View activity details.
+- Withdraw pending requests.
+- Leave joined activities.
+- Access group chat.
+- Add an activity to their calendar using an ICS download.
+- View participant information.
+- Manage hosted activities.
+- Submit post-activity feedback.
+
+Leaving an activity must release the participant's spot through a secure database operation.
+
+## 14. Host management dashboard
+
+Create a dedicated management screen for each hosted activity.
+
+Include:
+
+- Activity overview
+- Capacity and remaining spots
+- Pending join requests
+- Approved participants
+- Declined requests
+- Edit activity
+- Cancel activity
+- Group announcements
+- Attendance confirmation
+- Mark activity completed
+
+Only the activity host should have permission to manage these operations.
+
+## 15. Messaging
+
+Implement real-time activity group messaging using Firestore listeners.
+
+Only the host and approved participants can access an activity's group chat.
+
+Include:
+
+- Group chat list
+- Activity name and image
+- Participant avatars
+- Message timestamps
+- Text message input
+- Unread indicators
+- System messages for important activity updates
+- Report message functionality
+
+Prevent unauthorized access to private conversations.
+
+Do not allow unrestricted direct messaging between strangers in the initial MVP.
+
+Revoke group chat access when a participant leaves or is removed.
+
+## 16. Notifications
+
+Create persistent in-app notifications for:
+
+- New join request
+- Request approved
+- Request declined
+- Participant withdrawal
+- Activity updated
+- Activity cancelled
+- New group announcement
+- Upcoming activity reminder, if scheduled backend functionality is configured
+- Feedback request
+
+Include read and unread states.
+
+Allow users to mark individual notifications or all notifications as read.
+
+Notifications must be stored in Firestore and associated with the correct recipient.
+
+Do not simulate email or push notification delivery if those services are not configured.
+
+## 17. Saved activities
+
+Allow users to bookmark activities.
+
+Save bookmarks in Firestore so they persist across sessions and devices.
+
+Create a dedicated Saved page with an elegant empty state.
+
+Empty state copy:
+
+"Good plans are worth keeping."
+
+CTA: Discover activities
+
+## 18. User profile
+
+Create public and private profile views.
+
+Public profile:
+
+- Display name
+- Profile image
+- Short bio
+- City
+- Interests
+- Social preferences
+- Hosted activity count
+- Completed activity count, based on recorded activity data
+
+Private profile settings:
+
+- Edit profile
+- Change profile image
+- Update city
+- Update interests
+- Notification preferences
+- Privacy settings
+- Blocked users
+- Logout
+- Delete account
+
+Never expose private email addresses, phone numbers, exact home addresses, or authentication information to other users.
+
+## 19. Post-activity feedback
+
+After an activity is completed, allow approved participants to submit feedback.
+
+Ask:
+
+- Did you attend this activity?
+- Would you have attended without PlusOne?
+- Did you meet someone new?
+- How comfortable did you feel during the experience?
+- Would you use PlusOne again?
+- What could make the experience better?
+
+Store feedback securely.
+
+Only eligible participants should be able to submit feedback.
+
+Prevent duplicate feedback submissions.
+
+Do not publish private feedback publicly without consent.
+
+## 20. Impact dashboard for the Design Intelligence Challenge
+
+Create a private admin-only impact dashboard that measures whether PlusOne converts online interest into real-world interactions.
+
+Track genuine database events:
+
+- Activities published
+- Unique users who discovered activities
+- Join requests submitted
+- Requests approved
+- Attendance confirmations
+- Completed activities
+- Participants who reported meeting someone new
+- Participants who said they would not have attended alone
+- User feedback
+
+Display a conversion funnel:
+
+Activity discovered → Request submitted → Request approved → Attendance confirmed
+
+Distinguish self-reported attendance from independently confirmed attendance.
+
+Use only actual recorded data.
+
+Never fabricate experiment results.
+
+Clearly separate demo data from real pilot data.
+
+## 21. Firestore database architecture
+
+Create the following collections and appropriate subcollections.
+
+### users
+
+Fields:
+
+- uid
+- displayName
+- photoURL
+- bio
+- city
+- interests
+- socialVibe
+- goals
+- onboardingCompleted
+- adultConfirmed
+- createdAt
+- updatedAt
+
+### privateUsers
+
+Fields:
+
+- uid
+- email
+- notificationPreferences
+- privacySettings
+- termsAcceptedAt
+- blockedUserIds
+
+### activities
+
+Fields:
+
+- activityId
+- hostId
+- title
+- description
+- category
+- coverImageURL
+- venueName
+- venueAddress
+- city
+- startAt
+- endAt
+- timeZone
+- capacity
+- approvedParticipantCount
+- estimatedCost
+- currency
+- status
+- isDemo
+- createdAt
+- updatedAt
+
+### activityPrivateDetails
+
+Fields:
+
+- activityId
+- meetingInstructions
+- whatToBring
+
+### joinRequests
+
+Fields:
+
+- requestId
+- activityId
+- userId
+- hostId
+- introductoryMessage
+- status
+- createdAt
+- updatedAt
+
+Use a deterministic unique identifier for each activity-user combination.
+
+### participants
+
+Fields:
+
+- activityId
+- userId
+- role
+- membershipStatus
+- attendanceStatus
+- joinedAt
+
+### conversations
+
+Fields:
+
+- conversationId
+- activityId
+- createdAt
+- lastMessageAt
+
+### conversations/{conversationId}/messages
+
+Fields:
+
+- messageId
+- senderId
+- messageText
+- messageType
+- createdAt
+
+### notifications
+
+Fields:
+
+- notificationId
+- recipientId
+- activityId
+- type
+- title
+- message
+- isRead
+- createdAt
+
+### savedActivities
+
+Fields:
+
+- userId
+- activityId
+- createdAt
+
+### feedback
+
+Fields:
+
+- feedbackId
+- activityId
+- userId
+- attended
+- wouldAttendAlone
+- metSomeoneNew
+- comfortRating
+- wouldUseAgain
+- comments
+- createdAt
+
+### reports
+
+Fields:
+
+- reportId
+- reporterId
+- targetType
+- targetId
+- reason
+- description
+- status
+- createdAt
+
+### analyticsEvents
+
+Fields:
+
+- eventId
+- userId
+- activityId
+- eventType
+- isDemo
+- createdAt
+
+Use server-generated timestamps, appropriate composite indexes, pagination, and efficient Firestore queries.
+
+Store images in Cloud Storage and save their URLs in Firestore.
+
+Do not store images as base64 strings in database documents.
+
+## 22. Backend operations
+
+Implement secure backend operations for:
+
+- Publishing an activity
+- Editing an activity
+- Cancelling an activity
+- Submitting a join request
+- Approving a join request
+- Declining a join request
+- Withdrawing a request
+- Leaving an activity
+- Removing a participant
+- Creating notifications
+- Sending authorized messages
+- Confirming attendance
+- Completing an activity
+- Submitting feedback
+- Reporting inappropriate content
+- Deleting an account
+
+Validate authentication, permissions, input values, membership status, and capacity on the server.
+
+Make important operations idempotent to prevent duplicate records.
+
+Use Firestore transactions where multiple related records must remain consistent.
+
+## 23. Security and privacy
+
+Generate complete Firestore and Cloud Storage security rules.
+
+Follow least-privilege access.
+
+Requirements:
+
+- Users can edit only their own profile.
+- Private profile data is accessible only to its owner and authorized backend services.
+- Public activities can be discovered without exposing private participant information.
+- Only hosts can manage their own activities.
+- Only authorized hosts can approve requests.
+- Users can access their own requests.
+- Hosts can access requests for their activities.
+- Only approved participants and hosts can access private activity details and group chat.
+- Notifications are readable only by their intended recipient.
+- Administrative privileges must be assigned securely on the server.
+- Users cannot grant themselves administrator access.
+- Reports must not be publicly readable.
+- Validate file types and upload sizes.
+- Implement rate limiting and abuse prevention where appropriate.
+- Sanitize user-generated content.
+- Prevent unauthorized database writes.
+
+Never deploy with unrestricted test-mode Firestore rules.
+
+## 24. Safety and community features
+
+Design PlusOne for adults aged 18 and above.
+
+Require public meeting venues.
+
+Include:
+
+- Report user
+- Report activity
+- Report message
+- Block user
+- Community guidelines
+- Safety center
+- Clear cancellation and withdrawal options
+- Reminder to meet in public
+- Reminder to tell someone trusted about plans
+
+Implement actual report storage and blocking behavior.
+
+Provide an admin-only moderation queue for reviewing reports and removing inappropriate activities.
+
+Do not claim that these features guarantee user safety.
+
+## 25. Error and empty states
+
+Design all important states:
+
+- Invalid login
+- Incorrect password
+- Network failure
+- Database connection failure
+- Permission denied
+- Image upload failure
+- No activities nearby
+- No search results
+- No saved activities
+- No messages
+- No notifications
+- Group full
+- Activity cancelled
+- Activity expired
+- Request already submitted
+- Session expired
+- 404 page
+
+Every error should explain what happened and offer a useful recovery action.
+
+Never leave buttons nonfunctional or show unexplained blank screens.
+
+## 26. Demo content
+
+Provide an optional seed script that creates clearly labelled demo activities.
+
+Examples:
+
+- Museum day with new friends
+- Coffee with strangers
+- Sunday farmers market walk
+- Board games and good company
+- Sunset photography walk
+- Weekend hiking crew
+- Let's try a new restaurant
+- Movie night with new people
+
+Use diverse lifestyle photography from appropriately licensed sources.
+
+Do not use fabricated real-person identities or imply that demo activities are genuine live events.
+
+Keep demo data separate from real pilot analytics.
+
+## 27. Performance and accessibility
+
+Ensure:
+
+- Mobile-first responsive design.
+- Support for 360px mobile screens through large desktop displays.
+- Optimized images.
+- Lazy loading.
+- Accessible form labels.
+- Keyboard navigation.
+- Sufficient text contrast.
+- Screen reader support.
+- Reduced-motion preferences.
+- No horizontal overflow.
+- No broken links.
+- No console errors.
+- Proper loading states.
+- Consistent typography and spacing.
+- Efficient database reads.
+- Meaningful page titles and metadata.
+
+## 28. End-to-end testing
+
+Test the following scenario using two separate authenticated accounts.
+
+User A:
+
+- Creates an account.
+- Completes onboarding.
+- Publishes a genuine activity.
+
+User B:
+
+- Creates a separate account.
+- Completes onboarding.
+- Discovers User A's activity.
+- Saves the activity.
+- Requests to join.
+
+User A:
+
+- Receives the notification.
+- Reviews User B's request.
+- Approves the request.
+
+User B:
+
+- Receives the approval notification.
+- Sees the activity in My Plans.
+- Accesses the private meeting instructions.
+- Sends a group message.
+
+User A:
+
+- Receives the message.
+- Confirms attendance after the meetup.
+- Marks the activity completed.
+
+User B:
+
+- Submits post-activity feedback.
+
+The impact dashboard must update using genuine recorded events.
+
+Also test unauthorized access, duplicate requests, simultaneous approvals, full groups, cancelled activities, withdrawal, blocked users, and page refresh persistence.
+
+## 29. Final deliverables
+
+Generate:
+
+- Complete frontend source code.
+- Complete backend integration.
+- Firebase Authentication configuration.
+- Firestore database integration.
+- Firestore security rules.
+- Cloud Storage security rules.
+- Required Firestore indexes.
+- Backend functions.
+- Environment variable example file.
+- Optional demo seed script.
+- End-to-end test instructions.
+- README with setup and deployment instructions.
+- Mobile-responsive public deployment configuration.
+
+If a service requires manual configuration, clearly explain the remaining steps.
+
+Do not claim a feature works unless it has been implemented and tested.
+
+## 30. Implementation priorities
+
+The product is being developed for a 48-hour Design Intelligence Challenge.
+
+Prioritize the following functional core:
+
+1. Authentication and onboarding.
+2. Activity creation.
+3. Activity discovery.
+4. Join requests.
+5. Host approval.
+6. My Plans.
+7. Real database persistence.
+8. Real-world pilot feedback.
+
+Complete messaging, notifications, moderation, and additional features after the core flow works.
+
+Do not sacrifice the working end-to-end experience for unnecessary visual features.
+
+Do not introduce AI matching, payment processing, profile swiping, or complicated recommendation algorithms.
+
+The website must support at least one genuine non-team user and a real public meetup experiment.
+
+The final application should be polished enough for a startup product demonstration and functional enough for real users to create and join activities.
+
+Begin building the actual application now. Do not respond with only a project plan or an explanation. Generate the working application, connect the components, implement the backend, and verify the complete user journey.
