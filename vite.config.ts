@@ -32,7 +32,6 @@ export default defineConfig(() => {
       rollupOptions: {
         output: {
           manualChunks(id: string) {
-            if (id.includes('node_modules/firebase')) return 'firebase';
             if (id.includes('node_modules/motion')) return 'motion';
             if (id.includes('node_modules/lucide-react')) return 'icons';
             if (
