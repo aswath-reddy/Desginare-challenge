@@ -1,7 +1,19 @@
-import type { Timestamp } from 'firebase/firestore';
+type AnyDate = { toDate?: () => Date; toMillis?: () => number } | Date | string | number | null | undefined;
 
-export function formatActivityDate(ts: Timestamp | Date): string {
-  const date = ts instanceof Date ? ts : ts.toDate();
+export function toJsDate(val: AnyDate): Date {
+  if (!val) return new Date();
+  if (val instanceof Date) return val;
+  if (typeof (val as { toDate?: () => Date }).toDate === 'function') {
+    return (val as { toDate: () => Date }).toDate();
+  }
+  if (typeof (val as { toMillis?: () => number }).toMillis === 'function') {
+    return new Date((val as { toMillis: () => number }).toMillis());
+  }
+  return new Date(val as string | number);
+}
+
+export function formatActivityDate(ts: AnyDate): string {
+  const date = toJsDate(ts);
   return new Intl.DateTimeFormat('en-US', {
     weekday: 'short',
     month: 'short',
@@ -9,9 +21,9 @@ export function formatActivityDate(ts: Timestamp | Date): string {
   }).format(date);
 }
 
-export function formatActivityTimeRange(start: Timestamp | Date, end: Timestamp | Date): string {
-  const s = start instanceof Date ? start : start.toDate();
-  const e = end instanceof Date ? end : end.toDate();
+export function formatActivityTimeRange(start: AnyDate, end: AnyDate): string {
+  const s = toJsDate(start);
+  const e = toJsDate(end);
   const fmt = new Intl.DateTimeFormat('en-US', {
     hour: 'numeric',
     minute: '2-digit',
@@ -19,8 +31,8 @@ export function formatActivityTimeRange(start: Timestamp | Date, end: Timestamp 
   return `${fmt.format(s)} – ${fmt.format(e)}`;
 }
 
-export function formatFullDateTime(ts: Timestamp | Date): string {
-  const d = ts instanceof Date ? ts : ts.toDate();
+export function formatFullDateTime(ts: AnyDate): string {
+  const d = toJsDate(ts);
   return new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     month: 'long',
@@ -31,9 +43,9 @@ export function formatFullDateTime(ts: Timestamp | Date): string {
   }).format(d);
 }
 
-export function formatRelativeTime(ts: Timestamp | Date | null | undefined): string {
+export function formatRelativeTime(ts: AnyDate): string {
   if (!ts) return 'Just now';
-  const date = ts instanceof Date ? ts : ts.toDate();
+  const date = toJsDate(ts);
   const diffMs = Date.now() - date.getTime();
   const mins = Math.floor(diffMs / 60000);
   if (mins < 1) return 'Just now';
@@ -45,8 +57,8 @@ export function formatRelativeTime(ts: Timestamp | Date | null | undefined): str
   return formatActivityDate(date);
 }
 
-export function isToday(ts: Timestamp): boolean {
-  const d = ts.toDate();
+export function isToday(ts: AnyDate): boolean {
+  const d = toJsDate(ts);
   const now = new Date();
   return (
     d.getFullYear() === now.getFullYear() &&
@@ -55,8 +67,8 @@ export function isToday(ts: Timestamp): boolean {
   );
 }
 
-export function isThisWeekend(ts: Timestamp): boolean {
-  const d = ts.toDate();
+export function isThisWeekend(ts: AnyDate): boolean {
+  const d = toJsDate(ts);
   const now = new Date();
   const diffDays = (d.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
   if (diffDays < -0.5 || diffDays > 7) return false;
@@ -64,11 +76,11 @@ export function isThisWeekend(ts: Timestamp): boolean {
   return day === 0 || day === 5 || day === 6;
 }
 
-export function isStartingSoon(ts: Timestamp): boolean {
-  const diffHours = (ts.toDate().getTime() - Date.now()) / (1000 * 60 * 60);
+export function isStartingSoon(ts: AnyDate): boolean {
+  const diffHours = (toJsDate(ts).getTime() - Date.now()) / (1000 * 60 * 60);
   return diffHours >= 0 && diffHours <= 48;
 }
 
-export function isPastActivity(ts: Timestamp): boolean {
-  return ts.toDate().getTime() < Date.now();
+export function isPastActivity(ts: AnyDate): boolean {
+  return toJsDate(ts).getTime() < Date.now();
 }

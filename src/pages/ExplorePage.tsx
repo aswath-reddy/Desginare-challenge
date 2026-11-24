@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { ChevronDown, Grid } from 'lucide-react';
 import { AppShell } from '@/src/components/AppShell';
 import { ActivityCard } from '@/src/components/ActivityCard';
@@ -8,7 +7,14 @@ import { ActivityCardSkeleton } from '@/src/components/Skeletons';
 import { EmptyState } from '@/src/components/EmptyState';
 import { getBuiltInDemoPreviews } from '@/src/constants/demoData';
 import { ACTIVITY_CATEGORIES } from '@/src/constants/plusone';
-import { db, getUserFriendlyError } from '@/src/lib/firebase';
+import {
+  db,
+  collection,
+  onSnapshot,
+  query,
+  where,
+  getUserFriendlyError,
+} from '@/src/lib/firebase';
 import { isPastActivity } from '@/src/lib/date';
 import { useAuth } from '@/src/context/AuthContext';
 import type { Activity } from '@/src/types/plusone';

@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from '@/src/types/plusone';
 import { CURATED_COVER_IMAGES } from '@/src/constants/plusone';
 import type { Activity, ActivityCategory, ActivityPrivateDetails, ActivityRoster } from '@/src/types/plusone';
 

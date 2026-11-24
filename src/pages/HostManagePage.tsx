@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
-  collection,
-  doc,
-  onSnapshot,
-  query,
-  where,
-} from 'firebase/firestore';
-import {
   ArrowLeft,
   Check,
   Edit3,
@@ -29,7 +22,15 @@ import {
   updateAttendanceStatus,
 } from '@/src/lib/api';
 import { formatActivityDate, formatActivityTimeRange } from '@/src/lib/date';
-import { db, getUserFriendlyError } from '@/src/lib/firebase';
+import {
+  db,
+  collection,
+  doc,
+  onSnapshot,
+  query,
+  where,
+  getUserFriendlyError,
+} from '@/src/lib/firebase';
 import { useAuth } from '@/src/context/AuthContext';
 import type { Activity, JoinRequest, Participant } from '@/src/types/plusone';
 

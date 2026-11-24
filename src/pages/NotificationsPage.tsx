@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { Bell, CheckCheck } from 'lucide-react';
 import { AppShell } from '@/src/components/AppShell';
 import { EmptyState } from '@/src/components/EmptyState';
 import { PageSkeleton } from '@/src/components/Skeletons';
 import { markAllNotificationsRead, markNotificationRead } from '@/src/lib/api';
 import { formatRelativeTime } from '@/src/lib/date';
-import { db, getUserFriendlyError } from '@/src/lib/firebase';
+import {
+  db,
+  collection,
+  onSnapshot,
+  query,
+  where,
+  getUserFriendlyError,
+} from '@/src/lib/firebase';
 import { useAuth } from '@/src/context/AuthContext';
 import type { NotificationItem } from '@/src/types/plusone';
 

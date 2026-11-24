@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
 import { Bookmark } from 'lucide-react';
 import { AppShell } from '@/src/components/AppShell';
 import { ActivityCard } from '@/src/components/ActivityCard';
 import { ActivityCardSkeleton } from '@/src/components/Skeletons';
 import { EmptyState } from '@/src/components/EmptyState';
-import { db } from '@/src/lib/firebase';
+import { db, doc, getDoc } from '@/src/lib/firebase';
 import { useAuth } from '@/src/context/AuthContext';
 import type { Activity } from '@/src/types/plusone';
 

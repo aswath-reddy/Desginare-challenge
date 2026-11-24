@@ -1,13 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import {
-  collection,
-  doc,
-  onSnapshot,
-  orderBy,
-  query,
-  where,
-} from 'firebase/firestore';
 import { Flag, Lock, MessageSquare, Send } from 'lucide-react';
 import { AppShell } from '@/src/components/AppShell';
 import { EditorialImage, UserAvatar } from '@/src/components/EditorialImage';
@@ -16,7 +8,16 @@ import { PageSkeleton } from '@/src/components/Skeletons';
 import { ReportModal } from '@/src/components/ReportModal';
 import { sendGroupMessage } from '@/src/lib/api';
 import { formatRelativeTime } from '@/src/lib/date';
-import { db, getUserFriendlyError } from '@/src/lib/firebase';
+import {
+  db,
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+  getUserFriendlyError,
+} from '@/src/lib/firebase';
 import { useAuth } from '@/src/context/AuthContext';
 import type {
   ActivityRoster,

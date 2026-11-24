@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
 import { Flag, LogOut, ShieldBan, Trash2, Upload, UserCheck } from 'lucide-react';
 import { AppShell } from '@/src/components/AppShell';
 import { UserAvatar } from '@/src/components/EditorialImage';
@@ -17,7 +16,7 @@ import {
   updateUserProfile,
 } from '@/src/lib/api';
 import { uploadImageToStorage } from '@/src/lib/storage';
-import { db, getUserFriendlyError } from '@/src/lib/firebase';
+import { db, doc, getDoc, getUserFriendlyError } from '@/src/lib/firebase';
 import { useAuth } from '@/src/context/AuthContext';
 import type { UserPublicProfile } from '@/src/types/plusone';
 

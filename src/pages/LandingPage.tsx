@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
-  collection,
-  onSnapshot,
-  query,
-  where,
-} from 'firebase/firestore';
-import {
   ArrowRight,
   ArrowUpRight,
   Calendar,
@@ -27,7 +21,7 @@ import {
   CURATED_COVER_IMAGES,
 } from '@/src/constants/plusone';
 import { isPastActivity } from '@/src/lib/date';
-import { db } from '@/src/lib/firebase';
+import { db, collection, onSnapshot, query, where } from '@/src/lib/firebase';
 import { useAuth } from '@/src/context/AuthContext';
 import type { Activity } from '@/src/types/plusone';
 

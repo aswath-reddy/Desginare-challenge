@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, Share2, Upload } from 'lucide-react';
 import { motion } from 'motion/react';
 import { AppShell } from '@/src/components/AppShell';
@@ -12,7 +11,7 @@ import {
 } from '@/src/constants/plusone';
 import { editActivity, publishActivity } from '@/src/lib/api';
 import { uploadImageToStorage } from '@/src/lib/storage';
-import { db, getUserFriendlyError } from '@/src/lib/firebase';
+import { db, doc, getDoc, getUserFriendlyError } from '@/src/lib/firebase';
 import { useAuth } from '@/src/context/AuthContext';
 import type {
   Activity,

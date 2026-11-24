@@ -1,11 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  collection,
-  onSnapshot,
-  query,
-  where,
-} from 'firebase/firestore';
 import { Bookmark, ChevronDown, Compass, Plus, Search, SlidersHorizontal } from 'lucide-react';
 import { AppShell } from '@/src/components/AppShell';
 import { ActivityCard } from '@/src/components/ActivityCard';
@@ -13,7 +7,14 @@ import { ActivityCardSkeleton } from '@/src/components/Skeletons';
 import { EmptyState } from '@/src/components/EmptyState';
 import { getBuiltInDemoPreviews } from '@/src/constants/demoData';
 import { ACTIVITY_CATEGORIES, POPULAR_CITIES } from '@/src/constants/plusone';
-import { db, getUserFriendlyError } from '@/src/lib/firebase';
+import {
+  db,
+  collection,
+  onSnapshot,
+  query,
+  where,
+  getUserFriendlyError,
+} from '@/src/lib/firebase';
 import {
   isPastActivity,
   isStartingSoon,

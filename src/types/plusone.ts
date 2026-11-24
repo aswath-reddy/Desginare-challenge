@@ -1,4 +1,34 @@
-import type { Timestamp } from 'firebase/firestore';
+export interface TimestampCompat {
+  toDate(): Date;
+  toMillis(): number;
+  seconds?: number;
+  nanoseconds?: number;
+}
+
+export type Timestamp = TimestampCompat;
+
+export function wrapTimestamp(val: unknown): TimestampCompat {
+  const d =
+    val instanceof Date
+      ? val
+      : typeof val === 'string' || typeof val === 'number'
+      ? new Date(val)
+      : (val as { toDate?: () => Date })?.toDate
+      ? (val as { toDate: () => Date }).toDate()
+      : new Date();
+  return {
+    toDate: () => d,
+    toMillis: () => d.getTime(),
+    seconds: Math.floor(d.getTime() / 1000),
+    nanoseconds: (d.getTime() % 1000) * 1e6,
+  };
+}
+
+export const Timestamp = {
+  fromMillis: (ms: number): TimestampCompat => wrapTimestamp(ms),
+  fromDate: (d: Date): TimestampCompat => wrapTimestamp(d),
+  now: (): TimestampCompat => wrapTimestamp(new Date()),
+};
 
 export type ActivityCategory =
   | 'Coffee & Conversations'

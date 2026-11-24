@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { doc, onSnapshot } from 'firebase/firestore';
 import {
   ArrowLeft,
   Bookmark,
@@ -36,6 +35,8 @@ import {
 import { downloadActivityIcs } from '@/src/lib/ics';
 import {
   db,
+  doc,
+  onSnapshot,
   getUserFriendlyError,
   OperationType,
   handleFirestoreError,

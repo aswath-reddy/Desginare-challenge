@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import {
   Activity as ActivityIcon,
   BarChart3,
@@ -20,7 +19,14 @@ import {
   updateReportStatus,
 } from '@/src/lib/api';
 import { formatRelativeTime } from '@/src/lib/date';
-import { db, getUserFriendlyError } from '@/src/lib/firebase';
+import {
+  db,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  getUserFriendlyError,
+} from '@/src/lib/firebase';
 import { useAuth } from '@/src/context/AuthContext';
 import type {
   Activity,

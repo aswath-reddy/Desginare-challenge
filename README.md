@@ -42,24 +42,28 @@ Firebase Project ID: `sonorous-silo-3gt36` (configured in `firebase-applet-confi
 
 ---
 
-## Local Development & Build
+## Local Development & Running
 
+### 1. Prerequisites
+- **MongoDB**: Ensure MongoDB is running locally (e.g. `mongodb://127.0.0.1:27017/plusone`), or set `MONGODB_URI` in `.env`.
+
+### 2. Start Backend Server
 ```bash
-npm install
+npm run server
+```
+Runs the Express + Socket.io server on `http://localhost:5000`.
+
+### 3. Start Frontend Client (in a separate terminal)
+```bash
 npm run dev
 ```
+Starts the Vite development server on `http://localhost:3000`. Vite proxies `/api`, `/uploads`, and `/socket.io` to the backend on port 5000.
 
-Production build:
-
+### 4. Production Build
 ```bash
 npm run build
 ```
-
-Lint Firestore rules:
-
-```bash
-npx eslint firestore.rules
-```
+Type checks with `tsc --noEmit` and bundles optimized client assets to `dist/`.
 
 ---
 

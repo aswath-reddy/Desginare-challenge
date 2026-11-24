@@ -1,14 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
-  collection,
-  doc,
-  getDoc,
-  onSnapshot,
-  query,
-  where,
-} from 'firebase/firestore';
-import {
   CalendarCheck,
   Download,
   MessageSquare,
@@ -28,7 +20,16 @@ import {
 } from '@/src/lib/api';
 import { formatActivityDate, formatActivityTimeRange } from '@/src/lib/date';
 import { downloadActivityIcs } from '@/src/lib/ics';
-import { db, getUserFriendlyError } from '@/src/lib/firebase';
+import {
+  db,
+  collection,
+  doc,
+  getDoc,
+  onSnapshot,
+  query,
+  where,
+  getUserFriendlyError,
+} from '@/src/lib/firebase';
 import { useAuth } from '@/src/context/AuthContext';
 import type { Activity, JoinRequest, Participant } from '@/src/types/plusone';
 
